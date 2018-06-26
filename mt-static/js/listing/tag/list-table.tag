@@ -34,7 +34,9 @@
       class={
         primary: primary,
         sortable: sortable,
-        sorted: parent.store.sortBy == id
+        sorted: parent.store.sortBy == id,
+        "d-none": !primary,
+        "d-md-table-cell": !primary
       }
     >
       <a href="javascript:void(0)"
@@ -129,15 +131,32 @@
   <td data-is="list-table-column"
     each={ content, index in opts.object }
     if={ index > 0 }
-    class={ (parent.store.columns[0].id == 'id' && !parent.store.columns[0].checked)
-      ? parent.store.columns[index+1].id
-      : parent.store.columns[index].id
-    }
-    content={ content }>
+    content={ content }
+    class={ classes(index) }>
   </td>
 
   <script>
     this.mixin('listTop')
+
+    classes(index) {
+      if (index == 0) return
+      var columnIndex = this.columnIndex(index)
+      var nameClass = this.store.columns[columnIndex].id
+      var nonPrimaryColumnClasses = this.store.columns[columnIndex].primary ? '' : 'd-none d-md-table-cell'
+      if (nonPrimaryColumnClasses.length > 0) {
+        return nameClass + ' ' + nonPrimaryColumnClasses
+      } else {
+        return nameClass
+      }
+    }
+
+    columnIndex(index) {
+      if (this.store.columns[0].id == 'id' && !this.store.columns[0].checked) {
+        return index + 1
+      } else {
+        return index
+      }
+    }
   </script>
 </list-table-row>
 
