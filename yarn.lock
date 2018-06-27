@@ -1119,7 +1119,7 @@ ms@2.0.0:
 
 "mt7-style-guide@git+ssh://git@github.com:movabletype/mt7-style-guide.git#feature/support-mobile-alpha":
   version "1.0.0"
-  resolved "git+ssh://git@github.com:movabletype/mt7-style-guide.git#91360b02f8fab7dc9c6580cd9bc2169807ab0515"
+  resolved "git+ssh://git@github.com:movabletype/mt7-style-guide.git#1c0dd8e8cd7322444e1ca94446777e4b9bf3dde7"
   dependencies:
     bootstrap "4.0.0"
     winston "^2.3.1"

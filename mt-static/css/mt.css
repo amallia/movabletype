@@ -9630,8 +9630,13 @@ li {
 .mt-secondaryPanel, .mt-secondaryPanel--scrollable {
   padding-bottom: 4rem;
   padding-top: 1rem;
-  max-width: 400px;
   background: #F4F4F4;
+}
+
+@media (min-width: 768px) {
+  .mt-secondaryPanel, .mt-secondaryPanel--scrollable {
+    max-width: 400px;
+  }
 }
 
 .mt-secondaryPanel--scrollable {
