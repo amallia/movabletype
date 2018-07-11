@@ -26,9 +26,9 @@
 </mt:if>
 <mt:if name="scope_type" ne="system">
   <mt:if name="can_access_to_system_dashboard">
-      <li class="list-group-item p-4" style="background-color: #5FBCEB;">
-        <a href="<mt:var name="script_url">?__mode=dashboard&blog_id=0">
-          <mtapp:svgicon id="ic_system" title="System">
+      <li class="list-group-item p-4" style="background-color: #595959;">
+        <a href="<mt:var name="script_url">?__mode=dashboard&blog_id=0" class="text-light">
+          <mtapp:svgicon id="ic_system" color="inverse" title="System">
           <__trans phrase="System">
         </a>
       </li>
