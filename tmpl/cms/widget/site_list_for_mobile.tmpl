@@ -14,19 +14,27 @@
       </th>
     </head>
     <tbody>
-  <mt:loop name="content_types">
+  <mt:if name="content_types">
+    <mt:loop name="content_types">
       <tr>
         <td>
-    <mt:if name="can_list">
+      <mt:if name="can_list">
           <a href="<mt:var name="mt_url">?__mode=list&_type=content_data&type=<mt:var name="type_id">&blog_id=<mt:var name="blog_id">">
             <mt:var name="name" escape="html">
           </a>
-    <mt:else>
+      <mt:else>
           <mt:var name="name" escape="html">
-    </mt:if>
+      </mt:if>
         </td>
       </tr>
-  </mt:loop>
+    </mt:loop>
+  <mt:else>
+      <tr>
+        <td>
+          <__trans phrase="No Content Type could be found.">
+        </td>
+      </tr>
+  </mt:if>
     </tbody>
   </table>
 </div>
