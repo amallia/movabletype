@@ -1,0 +1,136 @@
+<mt:setvarblock name="product_header_name">
+<mt:if name="scope_type" eq="user">
+  <__trans phrase="Dashboard">
+<mt:elseif name="scope_type" eq="system">
+  <__trans phrase="System">
+<mt:elseif name="scope_type" eq="website">
+  <mt:var name="curr_website_name" escape="html">
+<mt:elseif name="scope_type" eq="blog">
+  <mt:var name="curr_blog_name" escape="html">
+</mt:if>
+</mt:setvarblock>
+
+<div id="dropdown" class="col-auto d-md-none p-4 mb-5">
+  <a id="dropdownMenuButton" class="d-inline-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">
+    <mtapp:svgicon id="ic_menu" color="inverse" title="<__trans phrase="Open Menu">">
+  </a>
+  <div id="dropdownMenu" class="dropdown-menu mt-0 p-0" aria-labelledby="dropdownMenuButton">
+    <ul class="list-group">
+<mt:if name="scope_type" ne="system">
+  <mt:if name="can_access_to_system_dashboard">
+      <li class="list-group-item p-4" style="background-color: #5FBCEB;">
+        <a href="<mt:var name="script_url">?__mode=dashboard&blog_id=0">
+          <mtapp:svgicon id="ic_system" title="System">
+          <__trans phrase="System">
+        </a>
+      </li>
+  </mt:if>
+</mt:if>
+      <li class="list-group-item p-4" style="background-color: #F4F4F4;">
+        <__trans phrase="Sites">
+      </li>
+<mt:loop name="fav_website_loop">
+      <li class="list-group-item p-4">
+  <mt:if name="fav_website_can_link">
+        <a href="<$mt:var name="mt_url"$>?blog_id=<$mt:var name="fav_website_id"$>&__mode=dashboard" class="ml-3">
+          <mt:var name="fav_website_name" escape="html">
+        </a>
+  <mt:else>
+        <span class="ml-3">
+          <mt:var name="fav_website_name" escape="html">
+        </span>
+  </mt:if>
+      </li>
+  <mt:loop name="fav_website_children">
+      <li class="list-group-item p-4">
+        <a href="<$mt:var name="mt_url"$>?blog_id=<$mt:var name="fav_blog_id"$>&__mode=dashboard" class="ml-5">
+          <mt:var name="fav_blog_name" escape="html">
+        </a>
+      </li>
+  </mt:loop>
+</mt:loop>
+<mt:unless name="selector_hide_website_chooser">
+      <li id="select-website" class="list-group-item p-4 select-another">
+        <a href="<mt:var name="script_url">?__mode=dialog_select_website&select_favorites=1&return_args=__mode%3Ddashboard" class="mt-open-dialog mt-modal-open scope-link text-light" data-mt-modal-large>
+          (<__trans phrase="Select another site...">)
+        </a>
+      </li>
+</mt:unless>
+<mt:unless name="selector_hide_blog_chooser">
+      <li id="select-blog" class="list-group-item p-4 select-another">
+        <a href="<mt:var name="script_url">?__mode=dialog_select_weblog&select_favorites=1&return_args=<mt:var name="return_args" escape="url">" class="mt-open-dialog mt-modal-open scope-link text-light" data-mt-modal-large>
+          (<__trans phrase="Select another child site...">)
+        </a>
+      </li>
+</mt:unless>
+      <li class="list-group-item p-4" style="background-color: #F4F4F4;">
+  <mt:if name="author_id">
+        <a href="<mt:var name="script_url">?__mode=view&_type=author&id=<mt:var name="author_id" escape="html">">
+  </mt:if>
+  <mt:if name="author_userpic_url">
+          <img src="<mt:var name="author_userpic_url" escape="html">" alt="" widht="32" height="32" class="mr-1 rounded-circle">
+  <mt:else>
+          <img src="<mt:var name="static_uri">images/user-default.svg" alt="" widht="32" height="32" class="mr-1">
+  </mt:if>
+          <mt:var name="user_screen_name">
+  <mt:if name="author_id">
+        </a>
+  </mt:if>
+      </li>
+      <li class="list-group-item p-4">
+  <mt:if name="author_id">
+        <a href="<mt:var name="script_url">?__mode=logout" class="ml-3">
+  </mt:if>
+          <__trans phrase="Sign out">
+  <mt:if name="author_id">
+        </a>
+  </mt:if>
+      </li>
+      <li class="list-group-item p-4">
+        <a href="javascript:void(0)" onclick="changeViewportForPC();">
+          <__trans phrase="PC View">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col d-flex d-md-none align-items-center text-white mb-5" style="background-color: #595959;">
+  <span class="h3 m-0 font-weight-light">
+    <mt:var name="product_header_name">
+  </span>
+</div>
+
+<style type="text/css">
+#dropdown {
+  background-color: black;
+}
+#dropdown.show {
+  background-color: gray;
+}
+
+#dropdownMenu {
+  border: 0 !important;
+  border-radius: 0 !important;
+  max-width: 400px;
+  top: 52px !important;
+  transform: none !important;
+}
+
+#dropdownMenu > ul > li {
+  border-radius: 0 !important;
+}
+</style>
+
+<script type="text/javascript">
+function changeViewportForPC() {
+  jQuery('meta[name=viewport]').attr('content', 'width=1200, initial-scale=0.25');
+}
+</script>
+
+<mt:setvarblock name="jq_js_include" append="1">
+jQuery(window).on('load resize', function () {
+  jQuery('#dropdownMenu').width(window.innerWidth * 0.9);
+});
+</mt:setvarblock>
+
