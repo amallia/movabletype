@@ -1750,6 +1750,7 @@ sub core_menus {
             mode      => "list",
             args      => { _type => "blog" },
             view      => ["website"],
+            mobile    => 1,
             condition => sub {
                 require MT::CMS::Blog;
                 return MT::CMS::Blog::can_view_blog_list($app);
@@ -1855,6 +1856,7 @@ sub core_menus {
             mode      => 'list',
             args      => { _type => 'entry' },
             view      => [ "blog", "website" ],
+            mobile    => 1,
             condition => sub {
                 return 1 if $app->user->is_superuser;
 
@@ -1889,6 +1891,7 @@ sub core_menus {
             args       => { _type => 'entry' },
             permission => 'create_post',
             view       => [ "blog", "website" ],
+            mobile     => 1,
         },
         'entry:category' => {
             label      => "Categories",
@@ -1897,6 +1900,7 @@ sub core_menus {
             args       => { _type => 'category' },
             permission => 'edit_categories',
             view       => [ "blog", "website" ],
+            mobile     => 1,
         },
         'entry:import' => {
             label      => "Import",
@@ -1919,6 +1923,7 @@ sub core_menus {
             mode      => 'list',
             args      => { _type => 'page' },
             view      => [ "blog", 'website' ],
+            mobile    => 1,
             condition => sub {
                 return 1 if $app->user->is_superuser;
 
@@ -1953,6 +1958,7 @@ sub core_menus {
             args       => { _type => 'page' },
             permission => 'manage_pages',
             view       => [ "blog", 'website' ],
+            mobile     => 1,
         },
         'page:folder' => {
             label      => "Folders",
@@ -1961,6 +1967,7 @@ sub core_menus {
             args       => { _type => 'folder' },
             permission => 'manage_pages',
             view       => [ "blog", 'website' ],
+            mobile     => 1,
         },
 
         'asset:manage' => {
@@ -1970,6 +1977,7 @@ sub core_menus {
             args       => { _type => 'asset' },
             permission => '',
             view       => [ "system", "blog", 'website' ],
+            mobile     => 1,
             condition  => sub {
                 return 1
                     if ( $app->user->is_superuser
@@ -2006,6 +2014,7 @@ sub core_menus {
             mode       => 'start_upload',
             permission => 'upload,edit_assets',
             view       => [ "blog", 'website' ],
+            mobile     => 1,
         },
         'asset:edit' => {
             order   => 10000,
@@ -2318,6 +2327,7 @@ sub core_menus {
             permission => 'manage_category_set',
             args       => { _type => 'category_set' },
             view       => [ 'website', 'blog' ],
+            mobile     => 1,
         },
         'category_set:create' => {
             label      => 'New',
@@ -2326,6 +2336,7 @@ sub core_menus {
             permission => 'manage_category_set',
             args       => { _type => 'category_set' },
             view       => [ 'website', 'blog' ],
+            mobile     => 1,
         },
 
         %{ MT::CMS::ContentData::make_menus() },
@@ -3294,6 +3305,9 @@ sub build_menus {
                     }
                 }
             }
+            unless ( exists $sub->{mobile} ) {
+                $sub->{mobile} = 0;
+            }
             push @sub, $sub;
         }
 
@@ -3410,6 +3424,9 @@ sub build_menus {
             $menu->{sub_nav_loop} = \@sub;
             if ( $menu->{allowed} ) {
                 $menu->{allowed} = 0 unless $has_sub;
+            }
+            unless ( exists $menu->{mobile} ) {
+                $menu->{mobile} = ( grep { $_->{mobile} } @sub ) ? 1 : 0;
             }
         }
     }
