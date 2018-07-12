@@ -139,5 +139,9 @@ function changeViewportForPC() {
 jQuery(window).on('load resize', function () {
   jQuery('#dropdownMenu').width(window.innerWidth * 0.9);
 });
+
+jQuery('#dropdownMenu').on('click', function (e) {
+  e.stopPropagation();
+});
 </mt:setvarblock>
 
