@@ -10,7 +10,7 @@
 </mt:if>
 </mt:setvarblock>
 
-<div id="dropdown" class="col-auto d-md-none p-4 mb-5">
+<div id="dropdown" class="col-auto d-md-none p-4">
   <a id="dropdownMenuButton" class="d-inline-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">
     <mtapp:svgicon id="ic_menu" color="inverse" title="<__trans phrase="Open Menu">">
   </a>
@@ -88,9 +88,9 @@
 </div>
 
 <mt:if name="blog_id">
-<div class="col d-flex d-md-none align-items-center mb-5" style="background-color: #E0E0E0;">
+<div class="col d-flex d-md-none align-items-center" style="background-color: #E0E0E0;">
 <mt:else>
-<div class="col d-flex d-md-none align-items-center text-white mb-5" style="background-color: #595959;">
+<div class="col d-flex d-md-none align-items-center text-white" style="background-color: #595959;">
 </mt:if>
   <span class="h3 m-0 font-weight-light">
     <mt:var name="product_header_name">
@@ -98,7 +98,7 @@
 </div>
 
 <mt:if name="menu_actions">
-<div class="col-auto d-flex d-md-none align-items-center mb-5" style="background-color: #E0E0E0;">
+<div class="col-auto d-flex d-md-none align-items-center" style="background-color: #E0E0E0;">
   <mt:loop name="menu_actions">
     <mt:setvarblock name="menu_action_href"><mt:if name="href"><mt:var name="href" escape="html"><mt:elseif name="mode"><mt:var name="mt_url">?__mode=<mt:var name="mode" escape="html"><mt:if name="blog_id" ne="">&blog_id=<mt:var name="blog_id"></mt:if><mt:else>javascript:void(0)</mt:if></mt:setvarblock>
     <mt:setvarblock name="escaped_menu_action_label"><mt:var name="label" escape="html"></mt:setvarblock>

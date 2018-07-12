@@ -1,0 +1,87 @@
+<mt:if name="scope_type" eq="user">
+<div class="mb-5"></div>
+<mt:else>
+<div id="primaryMenuContainer" class="d-md-none border-bottom p-3 mt-3 mb-5">
+  <button id="primaryMenuButton" class="btn btn-default p-0 mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <mtapp:svgicon id="ic_list" title="Primary Menu">
+  </button>
+  <span class="h3">
+    <mt:var name="page_title">
+  </span>
+
+  <div id="primaryMenu" class="dropdown-menu" aria-labelledby="primaryMenuButton" data-children=".item">
+    <ul class="list-group">
+  <mt:loop name="top_nav_loop">
+    <mt:if name="mobile">
+      <li class="list-group-item item p-4" style="background-color: #F4F4F4">
+        <a data-toggle="collapse" data-parent="#primaryNavigation" href="#item<mt:var name="__counter__">" aria-expanded="true" aria-controls="item<mt:var name="__counter__">">
+      <mt:setvarblock name="escaped_label"><mt:var name="label" escape="html"></mt:setvarblock>
+      <mt:if name="icon">
+        <mt:setvarblock name="escaped_icon"><mt:var name="icon" escape="html"></mt:setvarblock>
+          <mtapp:svgicon id="$escaped_icon" title="$escaped_label">
+      <mt:else>
+          <mtapp:svgicon id="ic_box" title="$escaped_label">
+      </mt:if>
+          <mt:var name="escaped_label">
+        </a>
+      </li>
+      <div id="item<mt:var name="__counter__">" class="collapse show" role="tabpanel">
+      <mt:loop name="sub_nav_loop">
+        <mt:if name="mobile">
+          <mt:if name="allowed">
+        <li class="list-group-item item p-4 pl-5">
+          <a href="<mt:var name="link" escape="html">"<mt:if name="current"> class="selected"<mt:elseif name="dialog"> class="mt-modal-open" data-mt-modal-large</mt:if>>
+            <mt:var name="label" escape="html">
+          </a>
+        </li>
+          </mt:if>
+        </mt:if>
+      </mt:loop>
+      </div>
+    </mt:if>
+  </mt:loop>
+    </ul>
+  </div>
+</div>
+</mt:if>
+
+<style type="text/css">
+#primaryMenuContainer.show #primaryMenuButton {
+  background-color: #CACACA;
+}
+
+#primaryMenu {
+  border: 0 !important;
+  border-radius: 0 !important;
+  max-width: 400px;
+  top: 43px !important;
+  transform: none !important;
+}
+
+#primaryMenu li {
+  border-radius: 0 !important;
+}
+
+#primaryMenu div li {
+  border-bottom: 0;
+}
+</style>
+
+<mt:setvarblock name="jq_js_include" append="1">
+jQuery(window).on('load resize', function () {
+  jQuery('#primaryMenu').width(window.innerWidth * 0.9);
+});
+
+jQuery('#primaryMenu').on('click', function () {
+  return false;
+});
+
+jQuery('#primaryMenu a').on('click', function (e) {
+  if (this.dataset.toggle) {
+    var collapseId = this.getAttribute('href');
+    jQuery(collapseId).collapse('toggle');
+  }
+  e.stopPropagation();
+});
+</mt:setvarblock>
+
