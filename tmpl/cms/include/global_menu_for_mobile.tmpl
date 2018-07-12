@@ -72,18 +72,12 @@
       </li>
 </mt:unless>
       <li class="list-group-item p-4" style="background-color: #F4F4F4;">
-  <mt:if name="author_id">
-        <a href="<mt:var name="script_url">?__mode=view&_type=author&id=<mt:var name="author_id" escape="html">">
-  </mt:if>
   <mt:if name="author_userpic_url">
-          <img src="<mt:var name="author_userpic_url" escape="html">" alt="" widht="32" height="32" class="mr-1 rounded-circle">
+        <img src="<mt:var name="author_userpic_url" escape="html">" alt="" widht="32" height="32" class="mr-1 rounded-circle">
   <mt:else>
-          <img src="<mt:var name="static_uri">images/user-default.svg" alt="" widht="32" height="32" class="mr-1">
+        <img src="<mt:var name="static_uri">images/user-default.svg" alt="" widht="32" height="32" class="mr-1">
   </mt:if>
-          <mt:var name="user_screen_name">
-  <mt:if name="author_id">
-        </a>
-  </mt:if>
+        <mt:var name="user_screen_name">
       </li>
       <li class="list-group-item p-4">
   <mt:if name="author_id">
