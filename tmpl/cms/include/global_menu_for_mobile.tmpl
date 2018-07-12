@@ -93,7 +93,13 @@
 <div class="col d-flex d-md-none align-items-center text-white" style="background-color: #595959;">
 </mt:if>
   <span class="h3 m-0 font-weight-light">
+<mt:if name="blog_id">
+    <a href="<mt:var name="script_url">?__mode=dashboard&blog_id=<mt:var name="blog_id" escape="html">">
+      <mt:var name="product_header_name">
+    </a>
+<mt:else>
     <mt:var name="product_header_name">
+</mt:if>
   </span>
 </div>
 
