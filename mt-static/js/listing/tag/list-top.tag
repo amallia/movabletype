@@ -14,7 +14,7 @@
         </virtual>
         <table data-is="list-table"
           id="{ opts.objectType }-table"
-          class="table mt-table { tableClass() }"
+          class="table mt-table mb-0 { tableClass() }"
         >
         </table>
       </div>
