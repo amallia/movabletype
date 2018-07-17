@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="row" hide={ opts.store.count == 0 }>
+  <div class="row mt-5 mt-md-0" hide={ opts.store.count == 0 }>
     <div data-is="list-pagination" class="col-12"></div>
   </div>
 

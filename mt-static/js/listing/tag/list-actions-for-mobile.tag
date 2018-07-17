@@ -1,6 +1,6 @@
 <list-actions-for-mobile>
   <div if={ hasActionForMobile() }
-    class="btn-group"
+    class="btn-group mb-5"
   >
     <button class="btn btn-default dropdown-toggle"
       data-toggle="dropdown">
@@ -8,7 +8,7 @@
     </button>
     <div class="dropdown-menu">
       <a each={ action, key in buttonActionsForMobile() }
-        class="dropdown-item"
+        class="dropdown-item py-4"
         href="javascript:void(0);"
         data-action-id={ key }
         onclick={ doAction }
@@ -16,7 +16,7 @@
         { action.label }
       </a>
       <a each={ action, key in listActionsForMobile() }
-        class="dropdown-item"
+        class="dropdown-item py-4"
         href="javascript:void(0);"
         data-action-id={ key }
         onclick={ doAction }
@@ -29,7 +29,7 @@
         { trans('Plugin Actions') }
       </h6>
       <a each={ action, key in moreListActionsForMobile() }
-        class="dropdown-item"
+        class="dropdown-item py-4"
         href="javascript:void(0);"
         data-action-id={ key }
         onclick={ doAction }

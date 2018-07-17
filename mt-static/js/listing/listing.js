@@ -30,7 +30,7 @@ riot.tag2('display-options-columns', '<div class="field-header"> <label>{trans(\
     }.bind(this)
 });
 
-riot.tag2('list-actions-for-mobile', '<div if="{hasActionForMobile()}" class="btn-group"> <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {trans(\'Select action\')} </button> <div class="dropdown-menu"> <a each="{action, key in buttonActionsForMobile()}" class="dropdown-item" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> <a each="{action, key in listActionsForMobile()}" class="dropdown-item" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> <h6 if="{moreListActionsForMobile() > 0}" class="dropdown-header"> {trans(\'Plugin Actions\')} </h6> <a each="{action, key in moreListActionsForMobile()}" class="dropdown-item" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> </div> </div>', '', '', function(opts) {
+riot.tag2('list-actions-for-mobile', '<div if="{hasActionForMobile()}" class="btn-group mb-5"> <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {trans(\'Select action\')} </button> <div class="dropdown-menu"> <a each="{action, key in buttonActionsForMobile()}" class="dropdown-item py-4" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> <a each="{action, key in listActionsForMobile()}" class="dropdown-item py-4" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> <h6 if="{moreListActionsForMobile() > 0}" class="dropdown-header"> {trans(\'Plugin Actions\')} </h6> <a each="{action, key in moreListActionsForMobile()}" class="dropdown-item py-4" href="javascript:void(0);" data-action-id="{key}" onclick="{doAction}"> {action.label} </a> </div> </div>', '', '', function(opts) {
     this.mixin('listTop')
     this.mixin('listActions')
 
@@ -796,7 +796,7 @@ riot.tag2('list-table-column', '<virtual></virtual>', '', '', function(opts) {
     this.root.innerHTML = opts.content
 });
 
-riot.tag2('list-top', '<div class="d-none d-md-block mb-3" data-is="display-options"></div> <div class="row mb-3"> <virtual data-is="list-actions" if="{opts.useActions}"></virtual> </div> <div class="row mb-3"> <div class="col-12"> <div class="card"> <virtual data-is="list-filter" if="{opts.useFilters}"> </virtual> <table data-is="list-table" id="{opts.objectType}-table" class="table mt-table {tableClass()}"> </table> </div> </div> </div> <div class="row" hide="{opts.store.count == 0}"> <div data-is="list-pagination" class="col-12"></div> </div>', '', '', function(opts) {
+riot.tag2('list-top', '<div class="d-none d-md-block mb-3" data-is="display-options"></div> <div class="row mb-3"> <virtual data-is="list-actions" if="{opts.useActions}"></virtual> </div> <div class="row mb-3"> <div class="col-12"> <div class="card"> <virtual data-is="list-filter" if="{opts.useFilters}"> </virtual> <table data-is="list-table" id="{opts.objectType}-table" class="table mt-table {tableClass()}"> </table> </div> </div> </div> <div class="row mt-5 mt-md-0" hide="{opts.store.count == 0}"> <div data-is="list-pagination" class="col-12"></div> </div>', '', '', function(opts) {
     riot.mixin('listTop', {
       init: function () {
         if (this.__.tagName == 'list-top') {
