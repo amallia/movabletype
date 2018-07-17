@@ -1,6 +1,9 @@
 <mt:setvarblock name="layout">
   <mt:include name="layout/common/header.tmpl" container_class="container-single-column">
 
+  <div class="row d-md-none">
+    <mt:include name="include/global_menu_for_mobile.tmpl">
+  </div>
   <div class="row flex-items-1">
     <mt:include name="include/main_content.tmpl" hide_breadcrumbs="1">
   </div>
