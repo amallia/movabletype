@@ -889,6 +889,7 @@ sub core_list_actions {
                 label         => "Unpublish Entries",
                 order         => 200,
                 code          => "${pkg}Entry::draft_entries",
+                mobile        => 1,
                 permit_action => {
                     permit_action => 'set_entry_draft_via_list',
                     include_all   => 1,
@@ -955,6 +956,7 @@ sub core_list_actions {
                 order         => 100,
                 js_message    => 'publish',
                 button        => 1,
+                mobile        => 1,
                 permit_action => {
                     permit_action =>
                         'publish_entry_via_list,publish_all_entry',
@@ -972,6 +974,7 @@ sub core_list_actions {
                 order      => 110,
                 js_message => 'delete',
                 button     => 1,
+                mobile     => 1,
             },
         },
         'page' => {
